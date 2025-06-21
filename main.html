@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>final </title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      opacity: 0;
+      transition: opacity 1.5s ease;
+      height: 100vh;
+      overflow: hidden;
+    }
+    /* Keep your existing styles here or in styles.css */
+  </style>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="glass">
+      <div class="mysticGlow"></div>
+      <div class="shine"></div>
+      <div class="glowSweep"></div>
+      <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+      </div>
+    </div>
+
+    <div class="roseText" id="changingText">"The Kind-Hearted Starry-Eyed Genius"</div>
+
+    <div class="thorns">
+      <div></div><div></div><div></div><div></div>
+    </div>
+
+    <div class="leaves">
+      <div></div><div></div><div></div><div></div>
+    </div>
+
+    <div class="petals">
+      <div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+    </div>
+
+    <div class="deadPetals">
+      <div></div><div></div><div></div><div></div>
+    </div>
+  </div>
+
+  <audio id="bgMusic" src="song.mp3" autoplay loop></audio>
+
+  <script>
+    // Fade in the page when loaded
+    window.addEventListener('DOMContentLoaded', () => {
+      document.body.style.opacity = '1';
+
+      // Resume audio position from sessionStorage
+      const audio = document.getElementById("bgMusic");
+      const lastTime = sessionStorage.getItem("bgMusicTime");
+      if (audio && lastTime) {
+        audio.currentTime = parseFloat(lastTime);
+      }
+      audio.play().catch(() => {
+        console.log("Autoplay prevented, waiting for user gesture");
+      });
+    });
+
+    const texts = [
+      "The Dreamer Who Dared to Bloom",
+      "The Starlit Poet of Tender Thoughts",
+      "The Soul that Loved in Silence",
+      "ENGINEER BY THE WAY XD",
+      "The Kind-Hearted Starry-Eyed Genius"
+    ];
+
+    let i = 0;
+    const textElement = document.getElementById("changingText");
+
+    function showNextText() {
+      textElement.style.opacity = 0;
+
+      setTimeout(() => {
+        textElement.innerHTML = `"${texts[i]}"`;
+        textElement.style.opacity = 1;
+        i++;
+        if (i < texts.length) {
+          setTimeout(showNextText, 5000);
+        }
+      }, 500);
+    }
+
+    setTimeout(showNextText, 2000);
+
+    // Allow resume on user tap if audio is paused
+    window.addEventListener('click', () => {
+      const audio = document.getElementById('bgMusic');
+      if (audio && audio.paused) {
+        audio.play().catch(() => {});
+      }
+    });
+  </script>
+</body>
+</html>

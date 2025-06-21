@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #ffe81f;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 1.5s ease;
+        }
+
+        #mainButton, .story-text {
+            position: absolute;
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+            padding: 20px;
+            transition: opacity 1s ease;
+        }
+
+        #mainButton {
+            background-color: #000;
+            color: #ffe81f;
+            border: 2px solid #ffe81f;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        #mainButton:hover {
+            background-color: #ffe81f;
+            color: #000;
+            box-shadow: 0 0 15px #ffe81f;
+        }
+
+        .story-text {
+            opacity: 0;
+            font-size: 24px;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 1s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #fadeOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 1000;
+            transition: opacity 1.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="fadeOverlay"></div>
+    <button id="mainButton">Begin the Story</button>
+
+    <div class="story-text" id="text1">A long time had passed , almost 8 years</div>
+    <div class="story-text" id="text2">your presence was a gift to any person </div>
+    <div class="story-text" id="text3">It was a great journey, i had the best memories with you </div>
+    <div class="story-text" id="text4">i had never met a soul who could speak my language until there was you and for that</div>
+    <div class="story-text" id="text5">I will always be in your debt </div>
+    <div class="story-text" id="text6">You are the sweetest kind heated soul i ever met </div>
+    <div class="story-text" id="text7">I really wish you succeed in your career , you worked day and night you deserve all joy and good times</div>
+    <div class="story-text" id="text8">May Allah guide you to even more success and bless the way of the best ENGINEER in this generation </div>
+    <div class="story-text" id="text9">just i want to say i feel proud and it was bless to meet you in this life  </div>
+    <div class="story-text" id="text10">Inshaallah your life is fulled with wonder and success and blessing , you made the world a better place </div>
+    <div class="story-text" id="text11">As if Jannah sent a whisper of itself down to earth where you pass in any garden every flower bows  </div>
+    <div class="story-text" id="text12">I don't wanna take too much of your time , so I want to give you long last flower  </div>
+
+    <audio id="bgMusic" autoplay loop>
+      <source src="song.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+    // Configuration
+    const TEXT_DISPLAY_TIME = 4000;
+    const FINAL_REDIRECT_URL = "main.html";
+
+    // Get elements
+    const mainButton = document.getElementById('mainButton');
+    const fadeOverlay = document.getElementById('fadeOverlay');
+    const textElements = Array.from({length: 12}, (_, i) => 
+        document.getElementById(`text${i+1}`));
+
+    // Create stars
+    function createStars() {
+        const starCount = 200;
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+
+            star.style.width = `${Math.random() * 3 + 1}px`;
+            star.style.height = star.style.width;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            star.style.animationDuration = `${Math.random() * 1.5 + 0.5}s`;
+
+            document.body.appendChild(star);
+        }
+    }
+
+    // Show text sequence
+    function showTextSequence() {
+        let currentIndex = 0;
+
+        function displayNextText() {
+            if (currentIndex > 0) {
+                textElements[currentIndex - 1].style.opacity = '0';
+            }
+
+            if (currentIndex < textElements.length) {
+                textElements[currentIndex].style.opacity = '1';
+                currentIndex++;
+                setTimeout(displayNextText, TEXT_DISPLAY_TIME);
+            } else {
+                // Fade to black
+                fadeOverlay.style.opacity = '1';
+
+                // Save audio time before redirect and redirect
+                setTimeout(() => {
+                    const audio = document.getElementById("bgMusic");
+                    if (audio) {
+                        sessionStorage.setItem("bgMusicTime", audio.currentTime);
+                    }
+                    window.location.href = FINAL_REDIRECT_URL;
+                }, 1500);
+            }
+        }
+
+        displayNextText();
+    }
+
+    // Main button click handler
+    mainButton.addEventListener('click', function() {
+        mainButton.classList.add('hidden');
+        createStars();
+        showTextSequence();
+    });
+    </script>
+
+</body>
+</html>

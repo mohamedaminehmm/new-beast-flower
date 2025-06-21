@@ -1,0 +1,530 @@
+body {
+	 height: 100%;
+	 width: 100%;
+	 background: #01001e;
+	 overflow: hidden;
+}
+ .container {
+	 position: absolute;
+	 left: 50%;
+	 top: 50%;
+	 transform: translate(-50%, -50%);
+	 animation: floatAndSpin 6s ease-in-out infinite;
+}
+ .glass {
+	 height: 350px;
+	 width: 200px;
+	 background: #122139;
+	 border-radius: 300px 300px 0px 0px;
+	 position: relative;
+	 border: 2px solid rgba(255, 255, 255, 0.3);
+	 box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+	 backdrop-filter: blur(1px);
+	 animation: glowBorder 4s ease-in-out infinite;
+}
+ .glass:before {
+	 content: "";
+	 height: 10px;
+	 width: 10px;
+	 transform-origin: center;
+	 border: 10px solid #122139;
+	 border-radius: 100%;
+	 position: absolute;
+	 left: 87px;
+	 top: -25px;
+}
+ .glass:after {
+	 content: "";
+	 position: absolute;
+	 height: 15px;
+	 width: 250px;
+	 background: #a52a2a;
+	 top: 100%;
+	 left: -13%;
+}
+ .shine {
+	 position: absolute;
+	 top: 80px;
+	 left: 85%;
+	 width: 16px;
+	 height: 140px;
+	 background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent 70%);
+	 border-radius: 100px;
+	 filter: blur(2px);
+	 z-index: 10;
+	 pointer-events: none;
+	 animation: shineMove 4s ease-in-out infinite;
+}
+ .shine:before {
+	 content: "";
+	 position: absolute;
+	 top: 160px;
+	 left: 0;
+	 width: 12px;
+	 height: 20px;
+	 background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+	 border-radius: 100px;
+	 filter: blur(3px);
+}
+ .glowSweep {
+	 position: absolute;
+	 top: 30px;
+	 left: 20px;
+	 width: 160px;
+	 height: 300px;
+	 border-radius: 50%;
+	 background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, transparent 70%);
+	 filter: blur(20px);
+	 z-index: 9;
+	 animation: sweepLight 5s ease-in-out infinite;
+	 pointer-events: none;
+}
+ .petals > div {
+	 position: absolute;
+	 background: #ffa6d2;
+	 width: 45px;
+	 height: 80px;
+	 top: 55px;
+	 transition: all 0.5s ease-out;
+}
+ .petals > div:nth-child(1) {
+	 border-radius: 15px;
+	 box-shadow: 0px 0px 30px rgba(245, 148, 184, 1);
+	 left: 80px;
+	 top: 60px;
+	 background: #ffa6d2;
+}
+ .petals > div:nth-child(2), .petals > div:nth-child(4), .petals > div:nth-child(6) {
+	 background: #ad0059;
+	 left: 60px;
+	 border-radius: 0px 30px 0px 30px;
+	 transform-origin: bottom right;
+}
+ .petals > div:nth-child(3), .petals > div:nth-child(5), .petals > div:nth-child(7) {
+	 background: #ad0059;
+	 left: 100px;
+	 border-radius: 30px 0px 30px 0px;
+	 transform-origin: bottom left;
+}
+ .petals > div:nth-child(2) {
+	 z-index: 5;
+	 background: #ff2b79;
+	 top: 75px;
+	 height: 70px;
+	 box-shadow: 0px 0px 50px rgba(245, 148, 184, .5);
+	 animation: bloom2 3s ease-in-out;
+	 animation-fill-mode: forwards;
+}
+ .petals > div:nth-child(3) {
+	 z-index: 4;
+	 background: #ff2b79;
+	 top: 75px;
+	 height: 70px;
+	 box-shadow: 0px 0px 50px rgba(245, 148, 184, .5);
+	 animation: bloom3 3s ease-in-out, glowing 2.5s ease-in-out infinite;
+	 animation-fill-mode: forwards;
+}
+ .petals > div:nth-child(4) {
+	 z-index: 3;
+	 background: #ad0059;
+	 top: 70px;
+	 height: 75px;
+	 box-shadow: 0px 0px 50px rgba(245, 148, 184, .5);
+	 animation: bloom4 3s ease-in-out, glowing 2.5s ease-in-out infinite;
+	 animation-fill-mode: forwards;
+}
+ .petals > div:nth-child(5) {
+	 z-index: 2;
+	 background: #ad0059;
+	 top: 70px;
+	 height: 75px;
+	 box-shadow: 0px 0px 50px rgba(245, 148, 184, .5);
+	 animation: bloom5 3s ease-in-out, glowing 2.5s ease-in-out infinite;
+	 animation-fill-mode: forwards;
+}
+ .petals > div:nth-child(6) {
+	 z-index: 1;
+	 background: #630033;
+	 top: 65px;
+	 height: 70px;
+	 box-shadow: 0px 0px 50px rgba(245, 148, 184, .3);
+	 animation: bloom6 3s ease-in-out, glowing 2.5s ease-in-out infinite;
+	 animation-fill-mode: forwards;
+}
+ .petals > div:nth-child(7) {
+	 z-index: 0;
+	 background: #630033;
+	 top: 65px;
+	 height: 70px;
+	 box-shadow: 0px 0px 50px rgba(245, 148, 184, .3);
+	 animation: bloom7 3s ease-in-out, glowing 2.5s ease-in-out infinite;
+	 animation-fill-mode: forwards;
+}
+ .deadPetals > div {
+	 position: absolute;
+	 background: #ffa6d2;
+	 width: 20px;
+	 height: 15px;
+	 top: 120px;
+	 border-radius: 0px 30px 0px 30px;
+	 box-shadow: 0px 0px 30px rgba(245, 148, 184, .5);
+	 transition: all 0.5s ease-out;
+}
+ .deadPetals > div:nth-child(1) {
+	 left: 70px;
+	 transform: rotate(-25deg);
+	 animation: falling 20s 0s ease-in-out infinite;
+}
+ .deadPetals > div:nth-child(2) {
+	 left: 90px;
+	 transform: rotate(-15deg);
+	 animation: falling 22s 2s ease-in-out infinite;
+}
+ .deadPetals > div:nth-child(3) {
+	 left: 110px;
+	 transform: rotate(-35deg);
+	 animation: falling 25s 4s ease-in-out infinite;
+}
+ .deadPetals > div:nth-child(4) {
+	 left: 80px;
+	 transform: rotate(-20deg);
+	 animation: falling 21s 6s ease-in-out infinite;
+}
+ .leaves > div:nth-last-child(1) {
+	 position: absolute;
+	 width: 55px;
+	 height: 30px;
+	 background: #003645;
+	 top: 120px;
+	 left: 75px;
+	 border-radius: 100px;
+}
+ .leaves > div:nth-child(1) {
+	 position: absolute;
+	 width: 6px;
+	 height: 210px;
+	 background: #00465a;
+	 top: 95px;
+	 left: 100px;
+	 border-radius: 0 0 100px 100px;
+}
+ .leaves > div:nth-child(2) {
+	 position: absolute;
+	 width: 30px;
+	 height: 50px;
+	 top: 53px;
+	 border-radius: 5px 40px 20px 40px;
+	 background: #00465a;
+	 transform-origin: bottom;
+	 transform: rotate(-30deg);
+	 top: 180px;
+	 left: 80px;
+	 box-shadow: inset 5px 5px #005a73;
+}
+ .leaves > div:nth-child(3) {
+	 position: absolute;
+	 width: 30px;
+	 height: 50px;
+	 top: 53px;
+	 border-radius: 40px 5px 40px 20px;
+	 background: #00465a;
+	 transform-origin: bottom;
+	 transform: rotate(30deg);
+	 top: 150px;
+	 left: 95px;
+	 box-shadow: inset -5px 5px #005a73;
+}
+ .thorns > div {
+	 position: absolute;
+	 width: 0;
+	 height: 0;
+	 top: 140px;
+}
+ .thorns > div:nth-child(odd) {
+	 border-top: 5px solid transparent;
+	 border-bottom: 5px solid transparent;
+	 border-left: 5px solid #00465a;
+	 left: 105px;
+}
+ .thorns > div:nth-child(even) {
+	 border-top: 5px solid transparent;
+	 border-bottom: 5px solid transparent;
+	 border-right: 5px solid #00465a;
+	 left: 95px;
+}
+ .thorns > div:nth-child(1) {
+	 top: 200px;
+}
+ .thorns > div:nth-child(2) {
+	 top: 170px;
+}
+ .thorns > div:nth-child(4) {
+	 top: 230px;
+}
+ @keyframes bloom2 {
+	 50% {
+		 transform: rotate(-90deg);
+		 top: 200px;
+		 left: 100px;
+	}
+	 100% {
+		 transform: rotate(-60deg);
+		 top: 252px;
+		 left: 77px;
+		 background: #300019;
+		 box-shadow: 0px 0px 0px rgba(245, 148, 184, 0);
+	}
+}
+ @keyframes bloom3 {
+	 100% {
+		 transform: rotate(45deg);
+	}
+}
+ @keyframes bloom4 {
+	 100% {
+		 transform: rotate(-20deg);
+	}
+}
+ @keyframes bloom5 {
+	 100% {
+		 transform: rotate(20deg);
+	}
+}
+ @keyframes bloom6 {
+	 100% {
+		 transform: rotate(-5deg);
+	}
+}
+ @keyframes bloom7 {
+	 100% {
+		 transform: rotate(5deg);
+	}
+}
+ @keyframes glowing {
+	 50% {
+		 background: #ffb0d7;
+		 box-shadow: 0px 0px 60px rgba(245, 148, 184, 1);
+	}
+}
+ @keyframes falling {
+	 20% {
+		 top: 335px;
+		 background: #300019;
+		 box-shadow: 0px 0px 0px rgba(245, 148, 184, 0);
+	}
+	 100% {
+		 top: 335px;
+		 opacity: 0;
+	}
+}
+ .particles {
+	 position: absolute;
+	 top: 0;
+	 left: 0;
+	 width: 100%;
+	 height: 100%;
+	 pointer-events: none;
+	 z-index: 5;
+}
+ .particle {
+	 position: absolute;
+	 width: 2px;
+	 height: 2px;
+	 background: rgba(255, 255, 255, 0.5);
+	 border-radius: 50%;
+	 box-shadow: 0 0 8px rgba(255, 200, 255, 0.6);
+	 animation: floatParticle 2s linear infinite;
+	 filter: blur(0.5px);
+}
+ .particle:nth-child(1) {
+	 top: 10%;
+	 left: 20%;
+	 animation-delay: 0s;
+}
+ .particle:nth-child(2) {
+	 top: 30%;
+	 left: 70%;
+	 animation-delay: 2s;
+}
+ .particle:nth-child(3) {
+	 top: 50%;
+	 left: 40%;
+	 animation-delay: 4s;
+}
+ .particle:nth-child(4) {
+	 top: 70%;
+	 left: 60%;
+	 animation-delay: 1s;
+}
+ .particle:nth-child(5) {
+	 top: 20%;
+	 left: 80%;
+	 animation-delay: 3s;
+}
+ .particle:nth-child(6) {
+	 top: 60%;
+	 left: 15%;
+	 animation-delay: 5s;
+}
+ .particle:nth-child(7) {
+	 top: 40%;
+	 left: 50%;
+	 animation-delay: 6s;
+}
+.roseText {
+  width: max-content;
+  position: absolute;
+  top: 290px;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Kingside', cursive;
+  font-size: 40px;
+  font-weight: normal;
+  color: #fcb8da;
+  text-shadow: 0 0 5px #fcb8da, 0 0 10px #fcb8da, 0 0 15px #fcb8da, 0 0 20px #fcb8da;
+  z-index: 99;
+  pointer-events: none;
+  transition: opacity 1.2s ease-in-out;
+  opacity: 0;
+}
+
+/* Brillo suave que respira */
+ @keyframes pulseGlow {
+	 0%, 100% {
+		 text-shadow: 0 0 5px #fcb8da, 0 0 10px #fcb8da, 0 0 15px #fcb8da, 0 0 20px #fcb8da;
+	}
+	 50% {
+		 text-shadow: 0 0 10px #fff, 0 0 20px #fcb8da, 0 0 30px #fcb8da, 0 0 40px #fff;
+	}
+}
+/* Escritura a mano suave */
+ @keyframes handwriting {
+	 0% {
+		 opacity: 0;
+		 transform: translateX(-50%) scale(0.95);
+	}
+	 100% {
+		 opacity: 1;
+		 transform: translateX(-50%) scale(1);
+	}
+}
+ @keyframes glowBorder {
+	 0%, 100% {
+		 box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+		 border-color: rgba(255, 255, 255, 0.3);
+	}
+	 50% {
+		 box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+		 border-color: rgba(255, 255, 255, 0.6);
+	}
+}
+ @keyframes floatAndSpin {
+	 0% {
+		 transform: translate(-50%, -50%) rotate(0deg);
+	}
+	 50% {
+		 transform: translate(-50%, -52%) rotate(1deg);
+	}
+	 100% {
+		 transform: translate(-50%, -50%) rotate(0deg);
+	}
+}
+ .mysticGlow {
+	 position: absolute;
+	 top: 50%;
+	 left: 50%;
+	 width: 500px;
+	 height: 700px;
+	 transform: translate(-50%, -50%);
+	 border-radius: 50%;
+	 pointer-events: none;
+	 z-index: -99;
+	 animation: glowPulse 6s ease-in-out infinite;
+}
+ .mysticGlow::before {
+	 content: '';
+	 position: absolute;
+	 inset: 0;
+	 border-radius: 50%;
+	 background: radial-gradient(circle, rgba(255, 148, 255, 0.25) 0%, transparent 70%);
+	 filter: blur(30px);
+	 animation: softWave 4s ease-in-out infinite;
+}
+ @keyframes shineMove {
+	 0%, 100% {
+		 transform: translateY(0);
+		 opacity: 0.3;
+	}
+	 50% {
+		 transform: translateY(10px);
+		 opacity: 0.1;
+	}
+}
+ @keyframes sweepLight {
+	 0% {
+		 transform: rotate(0deg) translateX(0px);
+		 opacity: 0.1;
+	}
+	 50% {
+		 transform: rotate(5deg) translateX(10px);
+		 opacity: 0.3;
+	}
+	 100% {
+		 transform: rotate(0deg) translateX(0px);
+		 opacity: 0.1;
+	}
+}
+ @keyframes floatParticle {
+	 0% {
+		 transform: translateY(0) scale(1);
+		 opacity: 0.8;
+	}
+	 50% {
+		 transform: translateY(-20px) scale(1.2);
+		 opacity: 1;
+	}
+	 100% {
+		 transform: translateY(-40px) scale(1);
+		 opacity: 0;
+	}
+
+}
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .container {
+    width: 90vw !important;
+    height: auto !important;
+    position: relative !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(0.8) !important;
+    animation: none !important; /* optional: disable float on mobile */
+  }
+
+  .glass {
+    width: 150px !important;
+    height: 250px !important;
+    border-radius: 200px 200px 0 0 !important;
+  }
+
+  .roseText {
+    font-size: 5vw !important;
+    top: auto !important;
+    bottom: 20px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+
+  .petals > div {
+    width: 25px !important;
+    height: 40px !important;
+    top: 40px !important;
+  }
+
+  body {
+    font-size: 4vw !important;
+  }
+}
+
+ 
